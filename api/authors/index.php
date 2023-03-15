@@ -7,6 +7,9 @@
         header('Access-Control-Allow-Headers: Origin, Accept, Content-Type, X-Requested-With');
         exit();
     } 
+    if($method ==="GET"){
+        include_once '../../read.php';
+    }
 /?>
 <!DOCTYPE html>
 <html lang="en">
