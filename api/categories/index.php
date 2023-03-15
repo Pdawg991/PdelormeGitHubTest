@@ -17,4 +17,16 @@ $method = $_SERVER['REQUEST_METHOD'];
         include '../categories/read.php';
         }
     }
+    if ($method === 'POST'){
+        echo $method;
+        include_once '../categories/create.php';
+    }
+    if ($method === 'PUT'){
+        include_once '../categories/update.php';
+        echo $method;
+    }
+    if ($method === 'DELETE'){
+        echo $method;
+        include_once '../categories/delete.php';
+    }
 ?>

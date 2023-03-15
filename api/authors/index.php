@@ -11,10 +11,22 @@ $method = $_SERVER['REQUEST_METHOD'];
     } 
     if($method ==='GET'){
         if (isset($_GET["id"])){
-            include '../authors/read_single.php';
+            include_once '../authors/read_single.php';
         }
         else{
-        include '../authors/read.php';
+        include_once '../authors/read.php';
         }
+    }
+    if ($method === 'POST'){
+        echo $method;
+        include_once '../authors/create.php';
+    }
+    if ($method === 'PUT'){
+        include_once '../authors/update.php';
+        echo $method;
+    }
+    if ($method === 'DELETE'){
+        echo $method;
+        include_once '../authors/delete.php';
     }
 ?>
