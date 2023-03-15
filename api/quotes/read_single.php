@@ -25,7 +25,19 @@ if(isset($_GET['category_id'])){
     $categoryIdSet = true;
     $quote->category_id = $_GET['category_id'];
 }
+try{
+    $quote->read_single($idSet, $authorIdSet, $categoryIdSet);
+    if ((!isset($quote->id)) ||!isset($quote->author)||!isset($quote->category))
+        {
+        throw new Exception();
+    }
 
-$quote->read_single($idSet, $authorIdSet, $categoryIdSet);
+else{
 $quote_arr = array('id'=> $quote->id, 'quote' => $quote->quote, 'author' => $quote->author, 'category' => $quote->category);
 echo json_encode($quote_arr);
+    }
+}
+    catch (Exception $e){
+        echo json_encode(array('message'=> 'No Quotes Found'));
+    }
+    
