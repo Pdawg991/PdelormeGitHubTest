@@ -13,11 +13,11 @@ $db = $database->connect();
 $post = new Category($db);
 
 $data = json_decode(file_get_contents("php://input"));
-
-$post->author = $data->author;
+$post->id = $data->id;
+$post->category = $data->category;
 
 if ($post->create()){
-    echo json_encode(array('message'=> 'Post Created'));
+    echo json_encode(array('id' => $post->id,'category'=> $post->category));
 }
 else {
     echo json_encode(array('message' => 'Post Not Created'));
