@@ -18,17 +18,24 @@ Class Author {
     }
 
 public function read_single(){
+    try{
     $query = 'SELECT id, author FROM ' . $this->table . ' 
     WHERE id= ? 
     OFFSET 0
     LIMIT 1';
     $stmt = $this->conn->prepare($query);
-
     $stmt->bindParam(1, $this->id);
     $stmt->execute();
 
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+    if (!isset($author->author) ||!isset($author->id)){
+        throw new Exception();
+    }
     $this->author = $row['author'];
+    }catch(Exception $e){
+        
+    }
 }
 public function create(){
     $query = 'INSERT INTO ' . $this->table . '(author) VALUES(:author)';
