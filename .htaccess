@@ -1,0 +1,5 @@
+SetEnv USERNAME "pdelorme"
+SetEnv PASSWORD "YIVSYYqbqcUj1xKnRBAKy8S5sjqsqQJK"
+SetEnv DBNAME "quotesdb_hrvq"
+SetEnv HOST "dpg-cg3acrhmbg5fch3nidu0-a.oregon-postgres.render.com"
+SetEnv PORT "5432"
