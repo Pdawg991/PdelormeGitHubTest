@@ -17,7 +17,7 @@ $post->id = $data->id;
 $post->category = $data->category;
 
 if ($post->create()){
-    echo json_encode(array('id' => $post->id,'category'=> $post->category));
+    echo json_encode(array('id' => $post->id,'category'=> $post->category), JSON_FORCE_OBJECT);
 }
 else {
     echo json_encode(array('message' => 'Post Not Created'));

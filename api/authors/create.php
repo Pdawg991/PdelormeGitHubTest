@@ -17,7 +17,7 @@ $post->id = $data->id;
 $post->author = $data->author;
 
 if ($post->create()){
-    echo json_encode(array('id' => $post->id,'author'=> $post->author));
+    echo json_encode(array('id' => $post->id,'author'=> $post->author), JSON_FORCE_OBJECT);
 }
 else {
     echo json_encode(array('message' => 'Post Not Created'));
