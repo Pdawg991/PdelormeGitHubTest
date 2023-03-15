@@ -21,7 +21,7 @@ $categories_arr['data'] = array();
 while($row = $result->fetch(PDO::FETCH_ASSOC)){
 extract($row);
 
-$category_item = array('category' => $category);
+$category_item = array('id' => $id,'category' => $category);
 
 array_push($categories_arr['data'], $category_item);
 
