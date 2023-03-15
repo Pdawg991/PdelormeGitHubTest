@@ -11,14 +11,14 @@ Class Author {
     }
 
     public function read(){
-        $query = 'SELECT author FROM ' . $this->table . ' ORDER BY author';
+        $query = 'SELECT id, author FROM ' . $this->table . ' ORDER BY author';
     $stmt = $this->conn->prepare($query);
     $stmt->execute();
     return $stmt;
     }
 
 public function read_single(){
-    $query = 'SELECT author FROM ' . $this->table . ' 
+    $query = 'SELECT id, author FROM ' . $this->table . ' 
     WHERE id= ? 
     OFFSET 0
     LIMIT 1';
@@ -28,7 +28,6 @@ public function read_single(){
     $stmt->execute();
 
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
     $this->author = $row['author'];
 }
 public function create(){

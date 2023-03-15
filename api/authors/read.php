@@ -21,7 +21,7 @@ $authors_arr['data'] = array();
 while($row = $result->fetch(PDO::FETCH_ASSOC)){
 extract($row);
 
-$author_item = array('author' => $author);
+$author_item = array('id' => $id, 'author' => $author);
 
 array_push($authors_arr['data'], $author_item);
 
