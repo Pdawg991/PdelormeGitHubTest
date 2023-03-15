@@ -18,15 +18,12 @@ $method = $_SERVER['REQUEST_METHOD'];
         }
     }
     if ($method === 'POST'){
-        echo $method;
         include_once '../authors/create.php';
     }
     if ($method === 'PUT'){
         include_once '../authors/update.php';
-        echo $method;
     }
     if ($method === 'DELETE'){
-        echo $method;
         include_once '../authors/delete.php';
     }
 ?>
