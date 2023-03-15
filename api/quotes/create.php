@@ -2,7 +2,7 @@
 header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json');
 header('Access-Control-Allow-Methods: POST');
-header('Access-Control-Allow-Headers: Access-Control-Allow-Headers, Content-Type, Access-Control-Allow-Methods, Authorization, X-Requested-With');
+header('Access-Control-Allow-Headers: Access-Control-Allow-Headers, Content-Type, Access-Control-Allow-Methods, quoteization, X-Requested-With');
 
 include_once '../../config/database.php';
 include_once '../../models/Quote.php';
@@ -13,12 +13,15 @@ $db = $database->connect();
 $post = new Quote($db);
 
 $data = json_decode(file_get_contents("php://input"));
-
-$post->author = $data->author;
-
-if ($post->create()){
-    echo json_encode(array('message'=> 'Post Created'));
+if(empty($data->quote)){
+    echo json_encode(array('message' => 'Missing Required Parameters'));
 }
-else {
-    echo json_encode(array('message' => 'Post Not Created'));
+else{
+$post->quote = $data->quote;
+if ($post->create()){
+    $post->getID($post->quote);
+    $a = array('id' => $post->id,'quote'=> $post->quote);
+    echo json_encode($a, JSON_FORCE_OBJECT);
+    
+}
 }

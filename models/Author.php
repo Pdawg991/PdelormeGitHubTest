@@ -65,9 +65,7 @@ public function update(){
         $this->id = htmlspecialchars(strip_tags($this->id));
         $stmt->bindParam(':id', $this->id);
         $stmt->bindParam(':author', $this->author);
-        if(empty($this->id) || empty($this->author)){
-            return false;
-        }
+
         if($stmt->execute()){
             return true;
         }
