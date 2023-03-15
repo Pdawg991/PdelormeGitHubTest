@@ -27,19 +27,7 @@ if(isset($_GET['category_id'])){
 }
 
 
-//try{
 $quote->read_single($idSet, $authorIdSet, $categoryIdSet);
-    //if (!isset($quote->quote) ||!isset($quote->id)){
-    //throw new Exception();
-//}
-//else{
-    //PRINT THE VARS RETUIRNED
 $quote_arr = array('id'=> $quote->id, 'quote' => $quote->quote, 'author' => $quote->author, 'category' => $quote->category);
 
 print_r(json_encode($quote_arr));
-//}
-
-//}
-//catch (Exception $e){
-  //  echo json_encode(array('message'=> 'quote_id Not Found'));
-//}
