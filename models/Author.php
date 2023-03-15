@@ -28,13 +28,9 @@ public function read_single(){
     $stmt->execute();
 
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
-    
-    if (!isset($author->author) ||!isset($author->id)){
-        throw new Exception();
-    }
     $this->author = $row['author'];
     }catch(Exception $e){
-        
+
     }
 }
 public function create(){
