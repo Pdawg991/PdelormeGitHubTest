@@ -3,7 +3,7 @@ header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json');
 
 include_once '../../config/database.php';
-include_once '../../models/quote.php';
+include_once '../../models/Quote.php';
 
 $database = new Database();
 $db = $database->connect();
@@ -26,8 +26,6 @@ if(isset($_GET['category_id'])){
     $quote->category_id = $_GET['category_id'];
 }
 
-
 $quote->read_single($idSet, $authorIdSet, $categoryIdSet);
 $quote_arr = array('id'=> $quote->id, 'quote' => $quote->quote, 'author' => $quote->author, 'category' => $quote->category);
-
-print_r(json_encode($quote_arr));
+echo json_encode($quote_arr);
