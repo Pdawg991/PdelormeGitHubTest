@@ -13,7 +13,6 @@ $author = new Author($db);
 $author->id = isset($_GET['id']) ? $_GET['id'] : die();
 try{
 $author->read_single();
-
     if (!isset($author->author) ||!isset($author->id)){
     throw new Exception();
 }

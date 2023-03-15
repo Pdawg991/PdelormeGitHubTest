@@ -28,8 +28,18 @@ public function read_single(){
     $stmt->execute();
 
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    $this->category = $row['category'];
+    try{
+        if(!isset($row['category'])){
+            throw new Exception();
+        }
+        else{
+        $this->category = $row['category'];
+        }
+        }
+        catch (Exception $e){
+    
+        }
+    
 }
 public function create(){
     $query = 'INSERT INTO ' . $this->table . '(category) VALUES(:category)';

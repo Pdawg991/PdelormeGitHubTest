@@ -18,7 +18,6 @@ Class Author {
     }
 
 public function read_single(){
-    try{
     $query = 'SELECT id, author FROM ' . $this->table . ' 
     WHERE id= ? 
     OFFSET 0
@@ -28,8 +27,16 @@ public function read_single(){
     $stmt->execute();
 
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+    try{
+    if(!isset($row['author'])){
+        throw new Exception();
+    }
+    else{
     $this->author = $row['author'];
-    }catch(Exception $e){
+    }
+    }
+    catch (Exception $e){
 
     }
 }

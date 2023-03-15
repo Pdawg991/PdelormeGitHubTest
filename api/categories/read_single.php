@@ -12,8 +12,17 @@ $category = new Category($db);
 
 $category->id = isset($_GET['id']) ? $_GET['id'] : die();
 
-$category->read_single();
 
-$category_arr = array('id'=> $category->id, 'category' => $category->category);
-
-print_r(json_encode($category_arr));
+try{
+    $category->read_single();
+        if (!isset($category->category) ||!isset($category->id)){
+        throw new Exception();
+    }
+    else{
+    $category_arr = array('id'=> $category->id, 'category' => $category->category);
+    print_r(json_encode($category_arr));
+    }
+    }
+    catch (Exception $e){
+        echo json_encode(array('message'=> 'category_id Not Found'));
+    }
