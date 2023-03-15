@@ -46,9 +46,7 @@ public function create(){
         $stmt = $this->conn->prepare($query);
 
         $this->category = htmlspecialchars(strip_tags($this->category));
-
         $stmt->bindParam(':category', $this->category);
-
         if($stmt->execute()){
             return true;
         }
@@ -88,5 +86,24 @@ if($stmt->execute()){
 }
 printf("Error: %s. \n", $stmt->error);
 return false;
+}
+public function getId($category){
+    $query = 'SELECT id FROM ' . $this->table . '
+    WHERE category = :category';
+    $stmt = $this->conn->prepare($query);
+    $stmt->bindparam(":category", $category);
+
+    if (!$stmt->execute()) {
+        return false;
+    }
+
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if (!$row) {
+        return false;
+    }
+
+    $this->id = $row['id'];
+    return $this->id;
 }
 }
