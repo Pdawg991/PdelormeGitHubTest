@@ -15,10 +15,10 @@ $post = new Category($db);
 $data = json_decode(file_get_contents("php://input"));
 $post->id = $data->id;
 $post->category = $data->category;
-
+$a = array('id' => $post->id,'category'=> $post->category);
 if ($post->create()){
-    echo json_encode(array('id' => $post->id,'category'=> $post->category), JSON_FORCE_OBJECT);
+    echo json_encode($a, JSON_FORCE_OBJECT);
 }
 else {
-    echo json_encode(array('message' => 'Post Not Created'));
+    echo jsaon_encode(array('message' => 'Post Not Created'));
 }
