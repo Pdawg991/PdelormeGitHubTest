@@ -14,12 +14,13 @@ $post = new Author($db);
 
 $data = json_decode(file_get_contents("php://input"));
 //Set ID to update
+if(empty($data->id) || empty($data->author)){
+    echo json_encode(array('message' => 'Missing Required Parameters'));
+}
+else{
 $post->id = $data->id;
 $post->author = $data->author;
-
 if ($post->update()){
     echo json_encode(array('id'=> $post->id,  'author' => $post->author));
 }
-else {
-    echo json_encode(array('message' => 'author_id Not Found'));
 }

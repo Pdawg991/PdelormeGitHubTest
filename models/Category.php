@@ -64,11 +64,9 @@ public function update(){
         $this->id = htmlspecialchars(strip_tags($this->id));
         $stmt->bindParam(':id', $this->id);
         $stmt->bindParam(':category', $this->category);
-        
         if($stmt->execute()){
             return true;
         }
-        printf("Error: %s. \n", $stmt->error);
         return false;
 }
 

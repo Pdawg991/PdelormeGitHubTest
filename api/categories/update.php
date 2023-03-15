@@ -14,12 +14,13 @@ $post = new Category($db);
 
 $data = json_decode(file_get_contents("php://input"));
 //Set ID to update
-$post->id = $data->id;
-$post->author = $data->author;
-
-if ($post->update()){
-    echo json_encode(array('id'=> $post->id,  'author' => $post->category));
+if(empty($data->id) || empty($data->category)){
+    echo json_encode(array('message' => 'Missing Required Parameters'));
 }
-else {
-    echo json_encode(array('message' => 'category_id Not Found'));
+else{
+    $post->id = $data->id;
+    $post->category = $data->category;
+if ($post->update()){
+    echo json_encode(array('id'=> $post->id,  'category' => $post->category));
+}
 }
