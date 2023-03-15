@@ -11,10 +11,10 @@ $method = $_SERVER['REQUEST_METHOD'];
     } 
     if($method ==='GET'){
         if (isset($_GET["id"])){
-            include '../authors/read_single.php';
+            include '../categories/read_single.php';
         }
         else{
-        include '../authors/read.php';
+        include '../categories/read.php';
         }
     }
 ?>
