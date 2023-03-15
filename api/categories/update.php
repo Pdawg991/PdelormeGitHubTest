@@ -18,8 +18,8 @@ $post->id = $data->id;
 $post->author = $data->author;
 
 if ($post->update()){
-    echo json_encode(array('message'=> 'Post Updated'));
+    echo json_encode(array('id'=> $post->id,  'author' => $post->category));
 }
 else {
-    echo json_encode(array('message' => 'Post Not Updated'));
+    echo json_encode(array('message' => 'category_id Not Found'));
 }

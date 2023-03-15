@@ -16,7 +16,7 @@ $data = json_decode(file_get_contents("php://input"));
 
 $post->id = $data->id;
 if ($post->delete()){
-    echo json_encode(array('message'=> 'Post Deleted'));
+    echo json_encode(array('id'=> $post->id));
 }
 else {
     echo json_encode(array('message' => 'Post Not Deleted'));
