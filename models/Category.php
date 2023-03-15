@@ -11,14 +11,14 @@ Class Category {
     }
 
     public function read(){
-        $query = 'SELECT category FROM ' . $this->table . ' ORDER BY category';
+        $query = 'SELECT id, category FROM ' . $this->table . ' ORDER BY category';
     $stmt = $this->conn->prepare($query);
     $stmt->execute();
     return $stmt;
     }
 
 public function read_single(){
-    $query = 'SELECT category FROM ' . $this->table . ' 
+    $query = 'SELECT id, category FROM ' . $this->table . ' 
     WHERE id= ? 
     OFFSET 0
     LIMIT 1';
