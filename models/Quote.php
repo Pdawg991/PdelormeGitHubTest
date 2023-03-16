@@ -33,8 +33,7 @@ public function read_single($idSet, $authorIdSet, $categoryIdSet){
         FROM quotes 
         INNER JOIN categories ON quotes.category_id = categories.id 
         INNER JOIN authors ON quotes.author_id = authors.id 
-        WHERE categories.id = :category_id 
-        OFFSET 0 LIMIT 1';
+        WHERE categories.id = :category_id ';
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(":category_id", $this->category_id);
         $stmt->execute();
@@ -46,7 +45,7 @@ public function read_single($idSet, $authorIdSet, $categoryIdSet){
         INNER JOIN authors ON quotes.author_id = authors.id 
         INNER JOIN categories ON quotes.category_id = categories.id 
         WHERE authors.id = :author_id 
-        OFFSET 0 LIMIT 1';
+        ';
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(":author_id", $this->author_id);
         $stmt->execute();
@@ -58,7 +57,7 @@ public function read_single($idSet, $authorIdSet, $categoryIdSet){
         INNER JOIN categories ON quotes.category_id = categories.id 
         INNER JOIN authors ON quotes.author_id = authors.id 
         WHERE quotes.id = :id 
-        OFFSET 0 LIMIT 1';
+        ';
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(":id", $this->id);
         $stmt->execute();
@@ -70,7 +69,7 @@ public function read_single($idSet, $authorIdSet, $categoryIdSet){
         INNER JOIN authors ON quotes.author_id = authors.id 
         INNER JOIN categories ON quotes.category_id = categories.id 
         WHERE authors.id = :author_id AND categories.id = :category_id 
-        OFFSET 0 LIMIT 1';
+        ';
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(":author_id", $this->author_id);
         $stmt->bindParam(":category_id", $this->category_id);
@@ -83,7 +82,7 @@ public function read_single($idSet, $authorIdSet, $categoryIdSet){
         INNER JOIN categories ON quotes.category_id = categories.id 
         INNER JOIN authors ON quotes.author_id = authors.id 
         WHERE quotes.id = :id AND categories.id = :category_id 
-        OFFSET 0 LIMIT 1';
+        ';
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(":id", $this->id);
         $stmt->bindParam(":category_id", $this->category_id);
@@ -96,7 +95,7 @@ public function read_single($idSet, $authorIdSet, $categoryIdSet){
         INNER JOIN authors ON quotes.author_id = authors.id 
         INNER JOIN categories ON quotes.category_id = categories.id 
         WHERE quotes.id = :id AND authors.id = :author_id 
-        OFFSET 0 LIMIT 1';
+        ';
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(":id", $this->id);
         $stmt->bindParam(":author_id", $this->author_id);
@@ -109,7 +108,7 @@ public function read_single($idSet, $authorIdSet, $categoryIdSet){
             INNER JOIN authors ON quotes.author_id = authors.id 
             INNER JOIN categories ON quotes.category_id = categories.id 
             WHERE quotes.id = :id AND authors.id = :author_id 
-            AND categories.id = :category_id OFFSET 0 LIMIT 1';
+            AND categories.id = :category_id ';
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(":id", $this->id);
             $stmt->bindParam(":author_id", $this->author_id);
@@ -117,23 +116,25 @@ public function read_single($idSet, $authorIdSet, $categoryIdSet){
             $stmt->execute();   
     }
 
-    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+   // $row = $stmt->fetch(PDO::FETCH_ASSOC);
     
-    try{
-    if(!isset($row['quote'])){
-        throw new Exception();
-    }
-    else{
-    $this->quote = $row['quote'];
+   // try{
+//if(!isset($row['quote'])){
+   //     throw new Exception();
+   // }
+    //else{
+        
+    /*$this->quote = $row['quote'];
     $this->category = $row['category'];
     $this->author = $row['author'];
-    $this->id = $row['id'];
+    $this->id = $row['id'];*/
+    return $stmt;
+    //}
     }
-    }
-    catch (Exception $e){
+    //catch (Exception $e){
 
-    }
-}
+//    }
+//}
 
 public function create(){
     $query = 'INSERT INTO ' . $this->table . '(quote) VALUES(:quote)';
