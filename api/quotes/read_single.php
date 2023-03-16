@@ -28,7 +28,11 @@ if(isset($_GET['category_id'])){
 
     $result = $quote->read_single($idSet, $authorIdSet, $categoryIdSet);
     $num = $result->rowCount();
-if ($num > 0){
+
+if ($num == 1){
+    echo json_encode($result->fetch(PDO::FETCH_ASSOC), JSON_FORCE_OBJECT);
+}
+else if ($num > 1){
 $quotes_arr = array();
 $quotes_arr['data'] = array();
 
