@@ -13,14 +13,18 @@ $db = $database->connect();
 $post = new Quote($db);
 
 $data = json_decode(file_get_contents("php://input"));
+
 if(empty($data->quote)){
     echo json_encode(array('message' => 'Missing Required Parameters'));
 }
 else{
 $post->quote = $data->quote;
+$post->category_id = $data->category_id;
+$post->author_id = $data->author_id;
+
 if ($post->create()){
     $post->getID($post->quote);
-    $a = array('id' => $post->id,'quote'=> $post->quote);
+    $a = array('id' => $post->id,'quote'=> $post->quote, 'author_id' => $post->author_id, 'category_id' => $post->category_id);
     echo json_encode($a, JSON_FORCE_OBJECT);
     
 }
