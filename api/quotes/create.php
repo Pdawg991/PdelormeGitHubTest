@@ -24,8 +24,8 @@ $post->author_id = $data->author_id;
 
 if ($post->create()){
     $post->getID($post->quote);
+    $a = array('id' => $post->id, 'quote'=> $post->quote, 'author_id' => $post->author_id, 'category_id' => $post->category_id);
+    echo json_encode($a, JSON_FORCE_OBJECT);
     
-    $a = array('id' => $post->id,'quote'=> $post->quote, 'author_id' => $post->author_id, 'category_id' => $post->category_id);
-    echo (json_encode($a));
 }
 }
