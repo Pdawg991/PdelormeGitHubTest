@@ -14,7 +14,7 @@ $post = new Quote($db);
 
 $data = json_decode(file_get_contents("php://input"));
 
-if(empty($data->quote)){
+if(!isset($data->quote)){
     echo json_encode(array('message' => 'Missing Required Parameters'));
 }
 else{
@@ -24,8 +24,7 @@ $post->author_id = $data->author_id;
 
 if ($post->create()){
     $post->getID($post->quote);
-    $a = array('id' => $post->id, 'quote'=> $post->quote, 'author_id' => $post->author_id, 'category_id' => $post->category_id);
-    echo json_encode($a);
-    
+    $arr = array('id' => $post->id, 'quote'=> $post->quote, 'author_id' => $post->author_id, 'category_id' => $post->category_id);
+    echo json_encode($arr);
 }
 }

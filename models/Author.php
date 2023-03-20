@@ -71,23 +71,22 @@ public function update(){
         }
         return false;
 }
-
 public function delete(){
-$query = 'DELETE FROM ' . $this->table . '
-WHERE id = :id';
 
-$stmt = $this->conn->prepare($query);
+    $query = 'DELETE FROM ' . $this->table . '
+    WHERE id = :id';
 
-$this->id = htmlspecialchars(strip_tags($this->id));
-$stmt->bindParam(':id', $this->id);
+    $stmt = $this->conn->prepare($query);
 
-if($stmt->execute()){
-    return true;
+    $this->id = htmlspecialchars(strip_tags($this->id));
+    $stmt->bindParam(':id', $this->id);
+
+    if($stmt->execute()){
+        return true;
+    }
+    printf("Error: %s. \n", $stmt->error);
+    return false;
 }
-printf("Error: %s. \n", $stmt->error);
-return false;
-}
-
 public function getId($author){
     $query = 'SELECT id FROM ' . $this->table . '
     WHERE author = :author';
