@@ -16,10 +16,10 @@ $data = json_decode(file_get_contents("php://input"));
 if(!isset($data->author_id)){
     echo json_encode(array('message' => 'author_id Not Found'));
 }
-if(!isset($data->category_id)){
+else if(!isset($data->category_id)){
     echo json_encode(array('message' => 'category_id Not Found'));
 }
-if(!isset($data->quote)){
+else if(!isset($data->quote)){
     echo json_encode(array('message' => 'Missing Required Parameters'));
 }
 else{
