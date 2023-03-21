@@ -136,23 +136,22 @@ public function create(){
         return false;
     }
 
-public function update(){
-
-    $query = 'UPDATE ' . $this->table . '
-    SET quote = :quote
-    WHERE id = :id';
+    public function update() {
+        $query = 'UPDATE ' . $this->table . '
+                  SET quote = :quote, author_id = :author_id, category_id = :category_id 
+                  WHERE id = :id';
         $stmt = $this->conn->prepare($query);
-
-        $this->quote = htmlspecialchars(strip_tags($this->quote));
-        $this->id = htmlspecialchars(strip_tags($this->id));
-        $stmt->bindParam(':id', $this->id);
-        $stmt->bindParam(':quote', $this->quote);
-
-        if($stmt->execute()){
+    
+        $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
+        $stmt->bindParam(':quote', $this->quote, PDO::PARAM_STR);
+        $stmt->bindParam(':category_id', $this->category_id, PDO::PARAM_INT);
+        $stmt->bindParam(':author_id', $this->author_id, PDO::PARAM_INT);
+        if ($stmt->execute()) {
             return true;
         }
+    
         return false;
-}
+    }
 
 public function delete(){
 $query = 'DELETE FROM ' . $this->table . '
