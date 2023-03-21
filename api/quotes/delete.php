@@ -10,12 +10,14 @@ include_once '../../models/Quote.php';
 $database = new Database();
 $db = $database->connect();
 
-$post = new Author($db);
+$delete = new Quote($db);
 
 $data = json_decode(file_get_contents("php://input"));
 
-$post->id = $data->id;
-if ($post->delete()){
+if(!$delete->idExists($data->id)){
+    echo json_encode(array('message' => 'No Quotes Found'));
+}
+else if ($delete->delete()){
     echo json_encode(array('id'=> $post->id));
 }
 else {

@@ -23,6 +23,9 @@ else if(!$put->authorExists($data->author_id)){
 else if(!$put->categoryExists($data->category_id)){
     echo json_encode(array('message' => 'category_id Not Found'));
 }
+else if(!$put->quoteExists($data->quote)){
+    echo json_encode(array('message' => 'No Quotes Found'));
+}
 else if (isset($data->author_id) && isset($data->category_id) && isset($data->quote)){
     $put->id = $data->id;
     $put->quote = $data->quote;
