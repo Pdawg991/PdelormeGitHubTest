@@ -13,7 +13,7 @@ $db = $database->connect();
 $post = new Quote($db);
 
 $data = json_decode(file_get_contents("php://input"));
-if(!isset($data->author_id)&& !isset($data->category_id) && !isset($data->quote)){
+if(!isset($data->author_id|| !isset($data->category_id) || !isset($data->quote))){
     echo json_encode(array('message' => 'Missing Required Parameters'));
 }
 else if(!$post->authorExists($data->author_id)){
@@ -22,7 +22,7 @@ else if(!$post->authorExists($data->author_id)){
 else if(!$post->categoryExists($data->category_id)){
     echo json_encode(array('message' => 'category_id Not Found'));
 }
-else if(isset($data->author_id)&& isset($data->category_id) && isset($data->quote)){
+else if(isset($data->author_id)&& isset($data->category_id) &&isset($data->quote)){
     $post->quote = $data->quote;
     $post->category_id = $data->category_id;
     $post->author_id = $data->author_id;
@@ -32,6 +32,7 @@ else if(isset($data->author_id)&& isset($data->category_id) && isset($data->quot
         echo json_encode($arr);
     }
 }
-else{
-    echo json_encode(array('message' => 'Missing Required Parameters'));
+else
+{
+    echo json_encode(array('message' => 'Missing Required Parameters')); 
 }
