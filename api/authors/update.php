@@ -13,7 +13,7 @@ $post = new Author($db);
 
 // Get JSON data from the request body and set ID to update
 $data = json_decode(file_get_contents("php://input"));
-if(empty($data->id) || empty($data->author)){
+if(!isset($data->id) || !isset($data->author)){
     // If ID or author data is missing, return a JSON error message
     echo json_encode(array('message' => 'Missing Required Parameters'));
 }

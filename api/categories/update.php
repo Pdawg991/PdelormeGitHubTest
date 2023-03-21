@@ -33,11 +33,10 @@ if ($num > 0){
         $category_item = array('id' => $id,'category' => $category);
         array_push($categories_arr['data'], $category_item);
     }
-
     // Output categories array as JSON
     echo json_encode($categories_arr['data']);
 }
 // If there are no categories, output an error message as JSON
 else{
-    echo json_encode(array('message'=> 'No Posts Found'));
+    echo json_encode(array('message'=> 'Missing Required Parameters'));
 }
