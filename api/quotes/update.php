@@ -10,17 +10,19 @@ include_once '../../models/Quote.php';
 $database = new Database();
 $db = $database->connect();
 
-$post = new Quote($db);
+$put = new Quote($db);
 
 $data = json_decode(file_get_contents("php://input"));
 //Set ID to update
-if(empty($data->id) || empty($data->quote)){
+if(empty($data->id) || empty($data->quote)
+empty($data->id) || empty($data->quote)
+empty($data->id) || empty($data->quote)){
     echo json_encode(array('message' => 'Missing Required Parameters'));
 }
 else{
-$post->id = $data->id;
-$post->quote = $data->quote;
-if ($post->update()){
-    echo json_encode(array('id'=> $post->id,  'quote' => $post->quote));
+$put->id = $data->id;
+$put->quote = $data->quote;
+if ($put->update()){
+    echo json_encode(array('id'=> $put->id,  'quote' => $put->quote));
 }
 }
