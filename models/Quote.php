@@ -206,7 +206,7 @@ public function categoryExists($categoryId){
         return false;
         }
 }
-public function categoryExists($quoteId){
+public function quoteExists($quoteId){
     $query = 'SELECT quote FROM ' . $this->table . '
     WHERE quote = :quote';
     $stmt = $this->conn->prepare($query);
