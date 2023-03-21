@@ -206,20 +206,7 @@ public function categoryExists($categoryId){
         return false;
         }
 }
-public function quoteExists($quoteId){
-    $query = 'SELECT quote FROM ' . $this->table . '
-    WHERE quote = :quote';
-    $stmt = $this->conn->prepare($query);
-    $stmt->bindparam(":quote", $quoteId);
-    $stmt->execute();
-    $row = $stmt->fetch(PDO::FETCH_ASSOC);
-    if (isset($row['quote'])){
-        return true;
-        }
-        else{
-        return false;
-        }
-}
+
 public function idExists($idExists){
     $query = 'SELECT id FROM ' . $this->table . '
     WHERE id = :id';

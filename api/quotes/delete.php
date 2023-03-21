@@ -17,7 +17,8 @@ if(!$delete->idExists($data->id)){
     echo json_encode(array('message' => 'No Quotes Found'));
 }
 else if ($delete->delete()){
-    echo json_encode(array('id'=> $post->id));
+    $delete->id = $data->id;
+    echo json_encode(array('id'=> $delete->id));
 }
 else {
     echo json_encode(array('message' => 'Post Not Deleted'));
