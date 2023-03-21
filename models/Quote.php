@@ -186,7 +186,12 @@ public function authorExists($authorId){
     $stmt->bindparam(":author_id", $authorId);
     $stmt->execute();
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    if (isset($row)){
     return $row['author_id'];
+    }
+    else{
+        return false;
+    }
 }
 public function categoryExists($categoryId){
     $query = 'SELECT category_id FROM ' . $this->table . '
@@ -195,6 +200,10 @@ public function categoryExists($categoryId){
     $stmt->bindparam(":category_id", $categoryId);
     $stmt->execute();
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
-    return $row['category_id'];
-}
+    if (isset($row)){
+        return $row['category_id'];
+        }
+        else{
+            return false;
+        }
 }
