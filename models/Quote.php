@@ -179,6 +179,22 @@ public function getId($quote){
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
     $this->id = $row['id'];
 }
-
-
+public function authorExists($authorId){
+    $query = 'SELECT author_id FROM ' . $this->table . '
+    WHERE author_id = :author_id';
+    $stmt = $this->conn->prepare($query);
+    $stmt->bindparam(":author_id", $authorId);
+    $stmt->execute();
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $row['author_id'];
+}
+public function categoryExists($categoryId){
+    $query = 'SELECT category_id FROM ' . $this->table . '
+    WHERE category_id = :category_id';
+    $stmt = $this->conn->prepare($query);
+    $stmt->bindparam(":category_id", $categoryId);
+    $stmt->execute();
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $row['category_id'];
+}
 }
