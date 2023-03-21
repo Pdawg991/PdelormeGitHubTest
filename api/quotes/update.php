@@ -17,7 +17,7 @@ $put = new Quote($db);
 $data = json_decode(file_get_contents("php://input"));
 
 // Check if required fields are present and if they exist in the database
-if(!isset($data->id)|| !isset($data->author_id)|| !isset($data->category_id) || !isset($data->quote)){
+if(!isset($data->author_id)|| !isset($data->category_id) || !isset($data->quote)){
     echo json_encode(array('message' => 'Missing Required Parameters'));
 } else if(!$put->authorExists($data->author_id)){
     echo json_encode(array('message' => 'author_id Not Found'));
@@ -34,7 +34,8 @@ if(!isset($data->id)|| !isset($data->author_id)|| !isset($data->category_id) || 
     if ($put->update()){
         echo json_encode(array('id'=> $put->id,  'quote' => $put->quote, 'category_id' => $put->category_id,  'author_id' => $put->author_id));
     }
-} else {
+} 
+else {
     // If no fields are present or don't exist, print error message
     echo json_encode(array('message' => 'Missing Required Parameters')); 
 }
