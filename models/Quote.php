@@ -31,7 +31,6 @@ class Quote {
         // Return the results of the SQL query
         return $stmt;
     }
-}
 // Returns all quotes from given id
 public function read_single($idSet, $authorIdSet, $categoryIdSet){
     $query;
@@ -231,4 +230,5 @@ public function idExists($idExists){
         else{
         return false;
         }
+}
 }
