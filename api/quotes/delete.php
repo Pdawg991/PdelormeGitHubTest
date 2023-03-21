@@ -16,8 +16,9 @@ $data = json_decode(file_get_contents("php://input"));
 if(!$delete->idExists($data->id)){
     echo json_encode(array('message' => 'No Quotes Found'));
 }
-else if ($delete->delete()){
-    $delete->id = $data->id;
+else if ($delete->idExists($data->id)){
+$delete->id = $data->id;
+$delete->delete();
     echo json_encode(array('id'=> $delete->id));
 }
 else {
