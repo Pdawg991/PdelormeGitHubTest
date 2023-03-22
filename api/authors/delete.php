@@ -27,8 +27,8 @@ $post->id = $data->id;
 
 // Check if post is deleted successfully and return appropriate response
 if ($post->delete()){
-echo json_encode(array('id'=> $post->id));
+    echo json_encode(array('id'=> $post->id));
 }
 else {
-echo json_encode(array('message' => 'Post Not Deleted'));
+    echo json_encode(array('message' => 'Post Not Deleted'));
 }

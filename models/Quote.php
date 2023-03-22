@@ -143,6 +143,7 @@ public function create(){
     printf("Error: %s. \n", $stmt->error);
     return false;
 }
+
 // Updates quote of ids given
 public function update() {
     $query = 'UPDATE ' . $this->table . '
@@ -157,9 +158,9 @@ public function update() {
     if ($stmt->execute()) {
         return true;
     }
-
     return false;
 }
+
 // Deletes quote from id given
 public function delete(){
 $query = 'DELETE FROM ' . $this->table . '
